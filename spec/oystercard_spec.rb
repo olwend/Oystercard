@@ -1,5 +1,5 @@
 require './lib/Oystercard'
-  describe Oystercard do
+describe Oystercard do
 
   it 'should have starting balance of zero' do
     expect(subject.balance).to eq(0)
@@ -14,13 +14,6 @@ require './lib/Oystercard'
       message = "balance threshold exceeded :£#{Oystercard::BALANCE_MAX}"
       expect{subject.top_up Oystercard::BALANCE_MAX + 1}.to raise_error message
     end
-  end
-
-  describe "#deduct" do
-     it "should deduct money" do
-       subject.top_up 30
-       expect{ subject.deduct 20}.to change{ subject.balance }.by -20
-     end
   end
 
   describe "#in_journey?" do
@@ -44,6 +37,11 @@ require './lib/Oystercard'
       subject.touch_in
       subject.touch_out
       is_expected.not_to be_in_journey
+    end
+    it "should deduct money after a journey" do
+      subject.top_up Oystercard::BALANCE_MIN
+      subject.touch_in
+      expect{subject.touch_out}.to change{ subject.balance }.by -Oystercard::BALANCE_MIN
     end
   end
 end
