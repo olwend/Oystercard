@@ -12,8 +12,15 @@ require './lib/Oystercard'
     end
     it "should object if told to go above max balance" do
       message = "balance threshold exceeded :£#{Oystercard::BALANCE_MAX}"
-      expect{subject.top_up 100}.to raise_error message
+      expect{subject.top_up Oystercard::BALANCE_MAX + 1}.to raise_error message
     end
   end
-  
+
+  describe "#deduct" do
+     it "is deducted" do
+       subject.top_up 30
+       expect{ subject.deduct 20}.to change{ subject.balance }.by -20
+     end
+  end
+
 end

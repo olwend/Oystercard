@@ -11,4 +11,9 @@ class Oystercard
     raise message if @balance + money > BALANCE_MAX
     @balance += money
   end
+
+  def deduct money
+    message = "balance top up :£#{money}"
+    @balance -= money
+  end
 end
