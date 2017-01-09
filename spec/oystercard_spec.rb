@@ -23,4 +23,16 @@ require './lib/Oystercard'
      end
   end
 
+  describe "in journey" do
+    it "touch in changes state to in journey" do
+      expect(subject).not_to be_in_journey
+    end
+
+    it "touch in changes state to in use" do
+      subject.touch_in
+      expect(subject).to be_in_journey
+    end
+
+  end
+
 end

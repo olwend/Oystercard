@@ -16,4 +16,12 @@ class Oystercard
     message = "balance top up :£#{money}"
     @balance -= money
   end
+
+  def in_journey?
+    @in_use
+  end
+
+  def touch_in
+    @in_use = true
+  end
 end
