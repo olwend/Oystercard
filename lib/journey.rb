@@ -1,11 +1,12 @@
 class Journey
-
+  DEFAULT_PENALTY = 6
   def initialize start_station
     @start_station = start_station
+    @in_journey = true
   end
 
   def in_journey?
-    true
+    @in_journey
   end
 
   def start_station
@@ -17,8 +18,11 @@ class Journey
   end
 
   def end station
-  @end_station = station
-    #deduct BALANCE_MIN
+    @end_station = station
+    @in_journey = false
   end
 
+  def calculate_fare zone_1, zone_2
+    5
+  end
 end
