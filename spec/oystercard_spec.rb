@@ -64,7 +64,7 @@ let(:station_2) {double :victoria}
   end
 
   describe "#journey_history" do
-    it{expect(subject.journey_history).to be_empty}
+    it{expect(subject.journey_history).to be_empty}#
   end
 
 end
