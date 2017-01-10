@@ -22,7 +22,7 @@ class Oystercard
     @start_station = station
   end
 
-  def touch_out
+  def touch_out station
     @start_station = nil
     deduct BALANCE_MIN
   end
