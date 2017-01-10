@@ -1,7 +1,7 @@
 require './lib/Oystercard'
 describe Oystercard do
 
-let(:station) {double :kings_cross, name: "Kings Cross"}
+let(:station) {double :kings_cross}
 
   it 'should have starting balance of zero' do
     expect(subject.balance).to eq(0)
@@ -30,7 +30,7 @@ let(:station) {double :kings_cross, name: "Kings Cross"}
       before(:each){subject.top_up Oystercard::BALANCE_MAX}
       it "should set start_station to current station" do
         subject.touch_in station
-        expect(subject.start_station.name).to eq "Kings Cross"
+        expect(subject.start_station).to eq station
       end
       it "should change state to in use" do
         subject.touch_in station
@@ -51,6 +51,12 @@ let(:station) {double :kings_cross, name: "Kings Cross"}
       subject.touch_in station
       expect{subject.touch_out}.to change{ subject.balance }.by -Oystercard::BALANCE_MIN
     end
-    # it "should forget entry station_ on touch"
+    it "should forget entry station on touch" do
+      subject.top_up Oystercard::BALANCE_MIN
+      subject.touch_in station
+      subject.touch_out
+      expect(subject.start_station).to eq nil
+    end
   end
+  
 end
