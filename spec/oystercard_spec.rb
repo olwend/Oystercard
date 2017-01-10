@@ -24,7 +24,7 @@ let(:station) {double :kings_cross, name: "Kings Cross"}
 
   describe "#touch_in" do
     it "should raise errors if below balance_min" do
-      expect{subject.touch_in}.to raise_error "balance too low for journey"
+      expect{subject.touch_in station}.to raise_error "balance too low for journey"
     end
     context "has enough money on card" do
       before(:each){subject.top_up Oystercard::BALANCE_MAX}
@@ -51,5 +51,6 @@ let(:station) {double :kings_cross, name: "Kings Cross"}
       subject.touch_in station
       expect{subject.touch_out}.to change{ subject.balance }.by -Oystercard::BALANCE_MIN
     end
+    # it "should forget entry station_ on touch"
   end
 end
