@@ -14,8 +14,8 @@ class Oystercard
     @balance += money
   end
 
-  def in_journey?
-    !!@start_station
+  def deduct money
+    @balance -= money
   end
 
   def touch_in station
@@ -29,9 +29,7 @@ class Oystercard
     deduct BALANCE_MIN
   end
 
-  private
-
-  def deduct money
-    @balance -= money
+  def in_journey?
+    !!@start_station
   end
 end
