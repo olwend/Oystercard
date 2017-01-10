@@ -7,8 +7,8 @@ describe Oystercard do
 
   describe "#top_up" do
     it "should update" do
-      subject.top_up 50
-      expect(subject.balance).to eq(50)
+      random_number = rand (1..Oystercard::BALANCE_MAX)
+      expect{subject.top_up random_number}.to change{subject.balance}.by random_number
     end
     it "should object if told to go above max balance" do
       message = "balance threshold exceeded :£#{Oystercard::BALANCE_MAX}"
@@ -24,10 +24,16 @@ describe Oystercard do
     it "should raise errors if below balance_min" do
       expect{subject.touch_in}.to raise_error "balance too low for journey"
     end
-    it "should change state to in use" do
-      subject.top_up Oystercard::BALANCE_MIN
-      subject.touch_in
-      expect(subject).to be_in_journey
+    context "has enough money on card" do
+      before(:each){subject.top_up Oystercard::BALANCE_MAX}
+      it "should set start_station to current station" do
+        subject.touch_in "Kings Cross"
+        expect{subject.start_station}.to eq "Kings Cross"
+      end
+      it "should change state to in use" do
+        subject.touch_in
+        expect(subject).to be_in_journey
+      end
     end
   end
 

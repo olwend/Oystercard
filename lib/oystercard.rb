@@ -10,7 +10,7 @@ class Oystercard
 
   def top_up money
     message = "balance threshold exceeded :£#{BALANCE_MAX}"
-    raise message if @balance + money > BALANCE_MAX
+    raise message if (@balance + money) > BALANCE_MAX
     @balance += money
   end
 
@@ -29,8 +29,8 @@ class Oystercard
   end
 
   private
+
   def deduct money
-    message = "balance top up :£#{money}"
     @balance -= money
   end
 end
