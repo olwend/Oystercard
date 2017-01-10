@@ -56,13 +56,15 @@ let(:station_2) {double :victoria}
       it "should receive an argument" do
         expect(subject).to respond_to(:touch_out).with(1).argument
       end
-    end
-
-    describe "$journey_history" do
-      it "should store a journey on touch_out" do
+      it "should store a journey on completion" do
         subject.touch_out station_2
         expect(subject.journey_history).to eq([{start_station: station,end_station: station_2}])
       end
     end
   end
+
+  describe "#journey_history" do
+    it{expect(subject.journey_history).to be_empty}
+  end
+
 end
