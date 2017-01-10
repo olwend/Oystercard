@@ -1,8 +1,8 @@
 require './lib/Oystercard'
 describe Oystercard do
 
-let(:station) {double :kings_cross}
-
+let(:station)   {double :kings_cross}
+let(:station_2) {double :victoria}
   it 'should have starting balance of zero' do
     expect(subject.balance).to eq(0)
   end
@@ -39,42 +39,30 @@ let(:station) {double :kings_cross}
     end
   end
 
-  describe "#touch_out" do
-    it "should not be in a journey after touching out" do
-      pending
-      subject.top_up Oystercard::BALANCE_MIN
-      subject.touch_in station
-      subject.touch_out
-      is_expected.not_to be_in_journey
+  context "has started journey" do
+    before(:each){subject.top_up Oystercard::BALANCE_MAX;subject.touch_in station}
+    describe "#touch_out" do
+      it "should not be in a journey after touching out" do
+        subject.touch_out station_2
+        is_expected.not_to be_in_journey
+      end
+      it "should deduct money after a journey" do
+        expect{subject.touch_out station_2}.to change{ subject.balance }.by -Oystercard::BALANCE_MIN
+      end
+      it "should forget entry station on touch" do
+        subject.touch_out station_2
+        expect(subject.start_station).to eq nil
+      end
+      it "should receive an argument" do
+        expect(subject).to respond_to(:touch_out).with(1).argument
+      end
     end
-    it "should deduct money after a journey" do
-      pending
-      subject.top_up Oystercard::BALANCE_MIN
-      subject.touch_in station
-      expect{subject.touch_out}.to change{ subject.balance }.by -Oystercard::BALANCE_MIN
-    end
-    it "should forget entry station on touch" do
-      pending
-      subject.top_up Oystercard::BALANCE_MIN
-      subject.touch_in station
-      subject.touch_out
-      expect(subject.start_station).to eq nil
-    end
-    it "should receive an argument" do
-      subject.top_up Oystercard::BALANCE_MIN
-      subject.touch_in station
-      #subject.touch_out
-      expect(subject).to respond_to(:touch_out).with(1).argument
-    end
-  end
 
-  describe "$journey_history" do
-    it "should store a journey on touch_out" do
-      pending"completion of touch_out method"
-      subject.top_up Oystercard::BALANCE_MIN
-      subject.touch_in station
-      subject.touch_out
-      expect(subject.journey).to eq s
+    describe "$journey_history" do
+      it "should store a journey on touch_out" do
+        subject.touch_out station_2
+        expect(subject.journey_history).to eq([{start_station: station,end_station: station_2}])
+      end
     end
   end
 end
