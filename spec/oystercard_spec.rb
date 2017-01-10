@@ -33,7 +33,7 @@ let(:station) {double :kings_cross, name: "Kings Cross"}
         expect(subject.start_station.name).to eq "Kings Cross"
       end
       it "should change state to in use" do
-        subject.touch_in
+        subject.touch_in station
         expect(subject).to be_in_journey
       end
     end
@@ -42,13 +42,13 @@ let(:station) {double :kings_cross, name: "Kings Cross"}
   describe "#touch_out" do
     it "should not be in a journey after touching out" do
       subject.top_up Oystercard::BALANCE_MIN
-      subject.touch_in
+      subject.touch_in station
       subject.touch_out
       is_expected.not_to be_in_journey
     end
     it "should deduct money after a journey" do
       subject.top_up Oystercard::BALANCE_MIN
-      subject.touch_in
+      subject.touch_in station
       expect{subject.touch_out}.to change{ subject.balance }.by -Oystercard::BALANCE_MIN
     end
   end

@@ -20,7 +20,7 @@ class Oystercard
     @in_use
   end
 
-  def touch_in (station = "Kings Cross")
+  def touch_in station
     raise "balance too low for journey" if @balance < BALANCE_MIN
     @in_use = true
     @start_station = station
