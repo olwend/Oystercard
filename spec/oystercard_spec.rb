@@ -30,13 +30,18 @@ describe Oystercard do
             expect(oystercard).to be_in_journey
           end
 
+          it '"touch in" writes an entry station' do
+            oystercard.touch_in
+            expect(oystercard.entry_station).to be nil
+          end
+
           it 'can touch out' do
             oystercard.touch_in
             oystercard.touch_out
             expect(oystercard).not_to be_in_journey
           end
         end
-        
+
       it 'reduces minimum fare from balance when touching out' do
         expect{ oystercard.touch_out }.to change{ oystercard.balance }.by(-Oystercard::MINIMUM_CHARGE)
       end

@@ -5,11 +5,12 @@ class Oystercard
   BALANCE_LIMIT = 90
   MINIMUM_CHARGE = 1
 
-  attr_reader :balance, :state
+  attr_reader :balance, :state, :entry_station
 
   def initialize
     @balance = 0
     @state = false
+    @entry_station = nil
   end
 
   def top_up(amount)
