@@ -27,11 +27,11 @@ class Oystercard
   def touch_out station
     @journey_history << {start_station: start_station, end_station: station}
     @journey = Journey.new if !@journey
-    deduct @journey.calculate_fare
+    deduct @journey.end station
     @start_station = nil
   end
 
-  def in_journey?
-    !!@start_station
-  end
+  # def in_journey?
+  #   !!@start_station
+  # end
 end

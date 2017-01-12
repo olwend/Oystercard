@@ -18,9 +18,7 @@ let(:station_2) {double :victoria}
     end
   end
 
-  describe "#in_journey?" do
-    it{is_expected.not_to be_in_journey}
-  end
+
 
   describe "#touch_in" do
     it "should raise errors if below balance_min" do
@@ -32,10 +30,7 @@ let(:station_2) {double :victoria}
         subject.touch_in station
         expect(subject.start_station).to eq station
       end
-      it "should change state to in use" do
-        subject.touch_in station
-        expect(subject).to be_in_journey
-      end
+
       it "should create a journey instance" do
         expect(subject.touch_in station).to eq(subject.journey)
     end
@@ -50,7 +45,7 @@ let(:station_2) {double :victoria}
       end
       it "should not be in a journey after touching out" do
         subject.touch_out station_2
-        is_expected.not_to be_in_journey
+        expect(subject.journey.in_journey?).to eq false
       end
       it "should deduct money after a journey" do
         expect{subject.touch_out station_2}.to change{ subject.balance }.by -Oystercard::BALANCE_MIN # TODO change to fare once implemented

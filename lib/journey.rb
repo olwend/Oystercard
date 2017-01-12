@@ -1,5 +1,5 @@
 class Journey
-
+attr_reader :start_station, :end_station
   DEFAULT_PENALTY = 6
   MINIMUM_FARE = 1
 
@@ -12,17 +12,10 @@ class Journey
     @in_journey
   end
 
-  def start_station
-    @start_station
-  end
-
-  def end_station
-    @end_station
-  end
-
   def end station
     @end_station = station
     @in_journey = false
+    calculate_fare
   end
 
   def calculate_fare

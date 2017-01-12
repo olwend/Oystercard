@@ -29,5 +29,12 @@ describe Journey do
       expect(subject.calculate_fare).to eq Journey::MINIMUM_FARE
     end
 
+    describe "oystercard tests" do
+      describe "#in_journey?" do
+        it{is_expected.to be_in_journey}
+      end
+
+    end
+
   end
 end
