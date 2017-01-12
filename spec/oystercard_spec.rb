@@ -42,19 +42,20 @@ let(:station_2) {double :victoria}
   context "has started journey" do
     before(:each){subject.top_up Oystercard::BALANCE_MAX;subject.touch_in station}
     describe "#touch_out" do
+
+      it "should receive an argument" do
+        expect(subject).to respond_to(:touch_out).with(1).argument
+      end
       it "should not be in a journey after touching out" do
         subject.touch_out station_2
         is_expected.not_to be_in_journey
       end
       it "should deduct money after a journey" do
-        expect{subject.touch_out station_2}.to change{ subject.balance }.by -Oystercard::BALANCE_MIN
+        expect{subject.touch_out station_2}.to change{ subject.balance }.by -Oystercard::BALANCE_MIN # TODO change to fare once implemented
       end
-      it "should forget entry station on touch" do
+      it "should forget entry station on touch out" do
         subject.touch_out station_2
         expect(subject.start_station).to eq nil
-      end
-      it "should receive an argument" do
-        expect(subject).to respond_to(:touch_out).with(1).argument
       end
       it "should store a journey on completion" do
         subject.touch_out station_2
