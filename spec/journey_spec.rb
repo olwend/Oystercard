@@ -4,6 +4,7 @@ describe Journey do
   let(:station) {double :Kings, name: "Kings",zone: 1}
   let(:end_station) {double :Pimlico, name: "Pimlico",zone: 1}
 
+
   subject {described_class.new(station)}
   describe "#new" do
     it{is_expected.to be_in_journey} ##
@@ -24,8 +25,9 @@ describe Journey do
       subject.end end_station
       is_expected.not_to  be_in_journey
     end
-    it "returns a value when given a completed journey" do
-      expect(subject.calculate_fare station.zone,end_station.zone).to eq 5
+    it "returns a minimum fare when given a completed journey" do
+      expect(subject.calculate_fare).to eq Journey::MINIMUM_FARE
     end
+
   end
 end

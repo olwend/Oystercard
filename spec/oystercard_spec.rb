@@ -36,6 +36,9 @@ let(:station_2) {double :victoria}
         subject.touch_in station
         expect(subject).to be_in_journey
       end
+      it "should create a journey instance" do
+        pending
+        expect(subject.touch_in station).to receive(subject.journey)
     end
   end
 
@@ -68,4 +71,18 @@ let(:station_2) {double :victoria}
     it{expect(subject.journey_history).to be_empty}
   end
 
+  describe "charge on journey completion" do
+
+    it "deducts the minimum fare if user touches in and out " do
+      subject.top_up Oystercard::BALANCE_MAX
+      subject.touch_in station
+      expect{subject.touch_out(station_2)}.to change{subject.balance}.by -Journey::MINIMUM_FARE
+    end
+
+    it "deducts a penalty if user does not touch in" do
+      expect{subject.touch_out(station_2)}.to change{subject.balance}.by -Journey::DEFAULT_PENALTY
+  end
+end
+
+end
 end

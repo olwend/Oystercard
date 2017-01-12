@@ -1,6 +1,9 @@
 class Journey
+
   DEFAULT_PENALTY = 6
-  def initialize start_station
+  MINIMUM_FARE = 1
+
+  def initialize(start_station = nil)
     @start_station = start_station
     @in_journey = true
   end
@@ -22,7 +25,8 @@ class Journey
     @in_journey = false
   end
 
-  def calculate_fare zone_1, zone_2
-    5
+  def calculate_fare
+    @start_station
+    #MINIMUM_FARE
   end
 end

@@ -1,5 +1,5 @@
 class Oystercard
-  attr_reader :balance, :start_station, :journey_history
+  attr_reader :balance, :start_station, :journey_history, :journey
   BALANCE_MAX = 90
   BALANCE_MIN = 1
 
@@ -21,6 +21,7 @@ class Oystercard
   def touch_in station
     raise "balance too low for journey" if @balance < BALANCE_MIN
     @start_station = station
+    @journey = Journey.new station
   end
 
   def touch_out station
