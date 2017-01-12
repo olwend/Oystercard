@@ -37,8 +37,7 @@ let(:station_2) {double :victoria}
         expect(subject).to be_in_journey
       end
       it "should create a journey instance" do
-        pending
-        expect(subject.touch_in station).to receive(subject.journey)
+        expect(subject.touch_in station).to eq(subject.journey)
     end
   end
 

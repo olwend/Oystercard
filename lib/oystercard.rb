@@ -26,8 +26,9 @@ class Oystercard
 
   def touch_out station
     @journey_history << {start_station: start_station, end_station: station}
+    @journey = Journey.new if !@journey
+    deduct @journey.calculate_fare
     @start_station = nil
-    deduct BALANCE_MIN
   end
 
   def in_journey?

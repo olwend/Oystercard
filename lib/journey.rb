@@ -26,7 +26,6 @@ class Journey
   end
 
   def calculate_fare
-    @start_station
-    #MINIMUM_FARE
+    @start_station ? MINIMUM_FARE : DEFAULT_PENALTY
   end
 end

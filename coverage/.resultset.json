@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/DOE/Projects/Makers_Course/week2/oystercard/spec/journey_spec.rb": [
+      "/Users/rob/Drive/makers/proper/week2/oystercard/spec/journey_spec.rb": [
         1,
         null,
         1,
@@ -36,41 +36,40 @@
         null,
         null
       ],
-      "/Users/DOE/Projects/Makers_Course/week2/oystercard/lib/journey.rb": [
+      "/Users/rob/Drive/makers/proper/week2/oystercard/lib/journey.rb": [
         1,
         null,
         1,
         1,
         null,
         1,
-        14,
-        14,
-        null,
-        null,
-        1,
-        2,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
+        15,
+        15,
         null,
         null,
         1,
         2,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        2,
         2,
         null,
         null,
         1,
-        1,
-        null,
+        7,
         null,
         null
       ],
-      "/Users/DOE/Projects/Makers_Course/week2/oystercard/spec/oystercard_spec.rb": [
+      "/Users/rob/Drive/makers/proper/week2/oystercard/spec/oystercard_spec.rb": [
         1,
         1,
         null,
@@ -111,7 +110,6 @@
         null,
         1,
         1,
-        1,
         null,
         null,
         null,
@@ -160,7 +158,7 @@
         null,
         null
       ],
-      "/Users/DOE/Projects/Makers_Course/week2/oystercard/lib/Oystercard.rb": [
+      "/Users/rob/Drive/makers/proper/week2/oystercard/lib/Oystercard.rb": [
         1,
         1,
         1,
@@ -191,6 +189,7 @@
         6,
         6,
         6,
+        6,
         null,
         null,
         1,
@@ -198,7 +197,7 @@
         null,
         null
       ],
-      "/Users/DOE/Projects/Makers_Course/week2/oystercard/spec/station_spec.rb": [
+      "/Users/rob/Drive/makers/proper/week2/oystercard/spec/station_spec.rb": [
         1,
         null,
         1,
@@ -214,7 +213,7 @@
         null,
         null
       ],
-      "/Users/DOE/Projects/Makers_Course/week2/oystercard/lib/station.rb": [
+      "/Users/rob/Drive/makers/proper/week2/oystercard/lib/station.rb": [
         1,
         1,
         null,
@@ -225,6 +224,6 @@
         null
       ]
     },
-    "timestamp": 1484238568
+    "timestamp": 1484240079
   }
 }
