@@ -8,9 +8,11 @@ describe Journey do
   subject {described_class.new(station)}
   describe "#new" do
     it{is_expected.to be_in_journey} ##
+
     it'has a start station set' do
       expect(subject.start_station).to eq station
     end
+
     it "has a penalty" do
       expect(Journey::DEFAULT_PENALTY.class).to eq Fixnum
     end
@@ -32,9 +34,9 @@ describe Journey do
     describe "oystercard tests" do
       describe "#in_journey?" do
         it{is_expected.to be_in_journey}
-      end
-
     end
+
+  end
 
   end
 end

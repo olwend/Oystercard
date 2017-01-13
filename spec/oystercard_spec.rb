@@ -7,6 +7,10 @@ let(:station_2) {double :victoria}
     expect(subject.balance).to eq(0)
   end
 
+  it 'should have no journey_history' do
+    expect(subject.journey_history).to be_empty
+  end
+
   describe "#top_up" do
     it "should update" do
       random_number = rand (1..Oystercard::BALANCE_MAX)
@@ -17,8 +21,6 @@ let(:station_2) {double :victoria}
       expect{subject.top_up Oystercard::BALANCE_MAX + 1}.to raise_error message
     end
   end
-
-
 
   describe "#touch_in" do
     it "should raise errors if below balance_min" do
